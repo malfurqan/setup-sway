@@ -24,7 +24,7 @@ The script is designed to work specifically with **Arch Linux** and its package 
 
 ## Installation
 
-### 1. Clone the repository
+### 1. Clone the repository and exeecute the script
 
 ```bash
 git clone git@github.com:username/setup-sway.git

@@ -6,7 +6,11 @@ CONFIG_DIR_ROFI="$HOME/.config/rofi"
 CONFIG_DIR_WAYBAR="$HOME/.config/waybar"
 STYLE_CSS_SOURCE="$HOME/setup-sway/style.css"
 STYLE_CSS_DEST="/etc/xdg/waybar/style.css"
-
+IMAGE_DIR="$HOME/Downloads/"
+IMAGE_FILE="wallpaper-1.png"
+IMAGE_SOURCE="$HOME/setup-sway/$IMAGE_FILE"
+IMAGE_DEST="$HOME/Downloads/$IMAGE_FILE"
+IMAGE_BACKUP="$HOME/Downloads/${IMAGE_FILE%.png}-bak.png"
 # Warna untuk output
 GREEN="\033[0;32m"
 NC="\033[0m" # No Color
@@ -121,4 +125,33 @@ else
   sudo cp "$STYLE_CSS_SOURCE" "$STYLE_CSS_DEST"
 fi
 
+# Periksa apakah direktori Downloads ada
+if [ ! -d "$IMAGE_DIR" ]; then
+  echo -e "${GREEN}Direktori Downloads tidak ditemukan. Membuat direktori...${NC}"
+  mkdir -p "$IMAGE_DIR"
+else
+  echo -e "${GREEN}Direktori Downloads sudah ada. Melanjutkan proses...${NC}"
+fi
+
+# Menyalin wallpaper ke direktori Downloads
+echo -e "${GREEN}Menyalin wallpaper-1.png ke direktori Downloads...${NC}"
+
+# Periksa apakah file gambar sudah ada di direktori Downloads
+if [ -f "$IMAGE_DEST" ]; then
+  # Cek jika file backup dengan nama yang sama sudah ada
+  if [ ! -f "$IMAGE_BACKUP" ]; then
+    echo -e "${GREEN}File $IMAGE_FILE sudah ada di direktori Downloads. Membuat backup dengan nama ${IMAGE_FILE%.png}-bak.png...${NC}"
+    mv "$IMAGE_DEST" "$IMAGE_BACKUP"
+  else
+    echo -e "${GREEN}File backup dengan nama ${IMAGE_FILE%.png}-bak.png sudah ada, melewati backup...${NC}"
+  fi
+  echo -e "${GREEN}Mengganti file $IMAGE_FILE yang ada dengan file baru...${NC}"
+  cp "$IMAGE_SOURCE" "$IMAGE_DEST"
+else
+  echo -e "${GREEN}File $IMAGE_FILE tidak ditemukan di direktori Downloads. Menyalin file baru...${NC}"
+  cp "$IMAGE_SOURCE" "$IMAGE_DEST"
+fi
+
+# Lanjutkan proses setup
+echo -e "${GREEN}Proses wallpaper selesai!${NC}"
 echo -e "${GREEN}Setup selesai!${NC}"

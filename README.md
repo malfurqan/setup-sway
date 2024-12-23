@@ -22,10 +22,8 @@ This script helps you quickly set up and configure Sway and its related applicat
 
 ## Installation
 
-### 1. Clone the repository and execute the script
+### 1. Clone the repository
 
 ```bash
-git clone git@github.com:username/setup-sway.git
+git clone https://github.com/malfurqan/setup-sway.git
 cd setup-sway
-chmod +x sway-setup.sh
-./sway-setup.sh

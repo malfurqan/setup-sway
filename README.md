@@ -1,4 +1,4 @@
-# Setup Sway
+# My Config Setup Sway
 
 This project is an automation script for setting up and configuring Sway, a tiling window manager for Wayland, along with several related applications such as Rofi, Waybar, and others.
 

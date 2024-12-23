@@ -4,6 +4,8 @@
 CONFIG_DIR="$HOME/.config/sway"
 CONFIG_DIR_ROFI="$HOME/.config/rofi"
 CONFIG_DIR_WAYBAR="$HOME/.config/waybar"
+STYLE_CSS_SOURCE="$HOME/setup-sway/style.css"
+STYLE_CSS_DEST="/etc/xdg/waybar/style.css"
 
 # Warna untuk output
 GREEN="\033[0;32m"
@@ -94,5 +96,29 @@ else
   fi
 fi
 
-# 5. Menyelesaikan setup
+# 5. Menyelesaikan setup dan memindahkan style.css ke /etc/xdg/waybar
+echo -e "${GREEN}Memindahkan style.css ke /etc/xdg/waybar...${NC}"
+
+# Periksa apakah file style.css ada di sumber
+if [ ! -f "$STYLE_CSS_SOURCE" ]; then
+  echo -e "${GREEN}File style.css tidak ditemukan di direktori sumber!${NC}"
+  exit 1
+fi
+
+# Periksa apakah file style.css sudah ada di /etc/xdg/waybar
+if [ -f "$STYLE_CSS_DEST" ]; then
+  # Cek jika style.css-bak sudah ada
+  if [ ! -f "${STYLE_CSS_DEST}-bak" ]; then
+    echo -e "${GREEN}File style.css sudah ada. Membuat backup dengan nama style.css-bak...${NC}"
+    sudo mv "$STYLE_CSS_DEST" "${STYLE_CSS_DEST}-bak"
+  else
+    echo -e "${GREEN}File style.css-bak sudah ada, melewati backup...${NC}"
+  fi
+  echo -e "${GREEN}Mengganti style.css yang ada dengan yang baru...${NC}"
+  sudo cp "$STYLE_CSS_SOURCE" "$STYLE_CSS_DEST"
+else
+  echo -e "${GREEN}File style.css tidak ditemukan di /etc/xdg/waybar. Menyalin file baru...${NC}"
+  sudo cp "$STYLE_CSS_SOURCE" "$STYLE_CSS_DEST"
+fi
+
 echo -e "${GREEN}Setup selesai!${NC}"

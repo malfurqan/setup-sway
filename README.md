@@ -29,3 +29,5 @@ The script is designed to work specifically with **Arch Linux** and its package 
 ```bash
 git clone git@github.com:username/setup-sway.git
 cd setup-sway
+chmod +x sway-setup.sh
+./sway-setup.sh

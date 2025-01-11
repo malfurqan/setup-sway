@@ -81,7 +81,13 @@ exec swayidle -w \
     # Reload the configuration file
     bindsym $mod+Shift+c reload
     # Lock screen
-    bindsym $mod+l exec swaylock -i ~/Downloads/wallpaper-1.png 
+    bindsym $mod+l exec swaylock --indicator \
+         --clock \
+         --datestr="%d/%m/%Y" \
+         --timestr="%H:%M:%S" \
+         -i ~/Downloads/wallpaper-1.png
+
+                                  
     # File manager
     bindsym $mod+e exec nautilus
    # Moving around:

@@ -36,7 +36,11 @@ client.unfocused #3C454C #3C454C #3C454C  #3C454C
 #
 # Daemon pengatur waktu idle
 exec swayidle -w \
-         timeout 900 'swaylock -f -i $HOME/Downloads/wallpaper-1.png' \
+         timeout 900 'swaylock --indicator \
+         --clock \
+         --datestr="%d/%m/%Y" \
+         --timestr="%H:%M:%S" \
+         -i ~/Downloads/wallpaper-1.png' \
          timeout 4800 'systemctl poweroff'
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when

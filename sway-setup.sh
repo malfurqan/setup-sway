@@ -27,12 +27,25 @@ fi
 
 # 2. Instalasi Sway dan paket tambahan
 echo -e "${GREEN}Menginstal Sway dan paket tambahan...${NC}"
-sudo pacman -S --noconfirm sway swaybg waybar wl-clipboard polkit-gnome xdg-desktop-portal-wlr swaylock swaync blueman bluez bluez-utils gammastep networkmanager network-manager-applet polkit rofi autotiling
+sudo pacman -S --noconfirm sway swaybg waybar wl-clipboard polkit-gnome xdg-desktop-portal-wlr swaync blueman bluez bluez-utils gammastep networkmanager network-manager-applet polkit rofi autotiling
 if [ $? -ne 0 ]; then
   echo -e "${GREEN}Instalasi gagal! Menghentikan skrip...${NC}"
   exit 1
 fi
 
+# 3. Memeriksa dan menginstal swaylock-effects jika yay atau paru tersedia
+echo -e "${GREEN}Memeriksa apakah yay atau paru tersedia...${NC}"
+if command -v yay >/dev/null 2>&1; then
+  echo -e "${GREEN}yay ditemukan. Menginstal swaylock-effects...${NC}"
+  yay -S swaylock-effects --noconfirm
+elif command -v paru >/dev/null 2>&1; then
+  echo -e "${GREEN}paru ditemukan. Menginstal swaylock-effects...${NC}"
+  paru -S swaylock-effects --noconfirm
+else
+  echo -e "${GREEN}yay atau paru tidak ditemukan. Melewati instalasi swaylock-effects.${NC}"
+fi
+
+echo -e "${GREEN}Proses selesai.${NC}"
 # 3. Membuat direktori konfigurasi jika belum ada
 echo -e "${GREEN}Membuat direktori konfigurasi untuk Sway...${NC}"
 if [ ! -d "$CONFIG_DIR" ]; then

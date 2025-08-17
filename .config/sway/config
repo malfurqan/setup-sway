@@ -12,15 +12,18 @@ set $mod Mod4
 set $left h
 set $down j
 set $up k
+set $right l
 # Auto execute on boot
   exec autotiling & /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & GDK_BACKEND=x11 nm-applet &
+ 
+
 # Your preferred terminaemulator<D-x><D-z><D-z>
 set $terminal kitty
 
 # Your preferred application launcher
 set $menu ~/.config/rofi/scripts/launcher_t1
 # Wallpaper
-output "*" bg ~/Downloads/wallpaper-1.png fill
+output "*" bg ~/Users/Wallpapers/wallpaper-dark-and-lamp.png fill
 
 # Ukuran border pada window
 for_window [title=".*"] border pixel 1
@@ -40,7 +43,7 @@ exec swayidle -w \
          --clock \
          --datestr="%d/%m/%Y" \
          --timestr="%H:%M:%S" \
-         -i ~/Downloads/wallpaper-1.png' \
+         -i ~/Users/Wallpapers/wallpaper-dark-and-lamp.png' \
          timeout 4800 'systemctl poweroff'
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -85,11 +88,11 @@ exec swayidle -w \
     # Reload the configuration file
     bindsym $mod+Shift+c reload
     # Lock screen
-    bindsym $mod+l exec swaylock --indicator \
+    bindsym $mod+Shift+l exec swaylock --indicator \
          --clock \
          --datestr="%d/%m/%Y" \
          --timestr="%H:%M:%S" \
-         -i ~/Downloads/wallpaper-1.png
+         -i ~/Users/Wallpapers/wallpaper-dark-and-lamp.png
 
                                   
     # File manager
@@ -99,21 +102,13 @@ exec swayidle -w \
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
   
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
 # Binds screenshot
    bindsym Print exec hyprshot -m output
    bindsym Shift+Print exec hyprshot -m region
@@ -214,7 +209,8 @@ mode "resize" {
    
 # Input Touchpad
   input "type:touchpad" {
-    tap enabled                     # Mengaktifkan tap-to-click
+    tap enabled
+    pointer_accel 0.5 
 }
 
 #

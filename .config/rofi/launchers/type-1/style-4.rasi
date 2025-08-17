@@ -9,9 +9,11 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,filebrowser";
-     display-drun:               "";
+	modi:                       "drun,filebrowser,calc,emoji";
+     display-drun:               "  ";
       display-filebrowser:        "";
+      display-calc:               "";
+      display-emoji:              "󰞅";
   }
 
 /*****----- Global Properties -----*****/

@@ -9,7 +9,7 @@ bluetooth_menu="󰂯 Bluetooth"
 # Cek apakah gammastep sedang berjalan
 
 # Gabungkan menu
-choosen_menu=$(echo -e "$toggle_plane\n$wifi_menu\n$nightmode_menu\n$bluetooth_menu" | uniq -u | rofi -dmenu -theme ${dir}/${theme}.rasi -i -selected-row 1 -p "Menu Search: ")
+choosen_menu=$(echo -e "$toggle_plane\n$wifi_menu\n$nightmode_menu\n$bluetooth_menu" | uniq -u | rofi -dmenu -theme ${dir}/${theme}.rasi -i -selected-row 0 -p "Menu Search: ")
 
 if [ "$choosen_menu" = "" ]; then
   exit
